@@ -1,0 +1,41 @@
+# Credentials and local configuration
+.env
+.env.*
+*.env
+!.env.example
+tokens.txt
+credentials.txt
+secrets.txt
+configs/*.local.*
+docker-compose.override.yml
+compose.override.yml
+
+# Certificates, keys, agent state, raw telemetry
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+certs/
+elastic-agent-*/
+*.tar.gz
+*.zip
+agent-state/
+data/
+logs/
+*.log
+*.ndjson
+*.har
+raw-screenshots/
+screenshots/raw/
+
+# Local tools and backups
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.tmp
+*.swp
+*.bak
+*.backup
+*~

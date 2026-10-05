@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+<title id="title">Active Directory and Elastic Security lab architecture</title>
+<desc id="desc">WIN11-LAB02 authenticates against DC01 Samba AD. Elastic Agent on DC01 sends telemetry directly to Elasticsearch and connects to Fleet Server for management. Kibana evaluates the threshold rule.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#2563eb"/></marker><marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#047857"/></marker></defs>
+<rect width="1200" height="780" fill="#f8fafc"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#0f172a">
+<text x="48" y="52" font-size="28" font-weight="700">Active Directory + Elastic Security</text>
+<text x="48" y="81" font-size="16" fill="#475569">LAB.LOCAL / LAB • UTM shared network 192.168.64.0/24</text>
+<rect x="40" y="110" width="1120" height="284" rx="18" fill="#eff6ff" stroke="#bfdbfe"/>
+<text x="64" y="142" font-size="14" fill="#475569">IDENTITY AND AUTHENTICATION TELEMETRY</text>
+<rect x="70" y="173" width="320" height="176" rx="12" fill="white" stroke="#94a3b8"/>
+<text x="94" y="209" font-size="23" font-weight="700">WIN11-LAB02</text>
+<text x="94" y="239" font-size="17">Windows 11 • 192.168.64.10</text>
+<text x="94" y="269" font-size="16">LAB.LOCAL domain member</text>
+<text x="94" y="305" font-size="15" fill="#475569">Controlled domain login attempts</text>
+<path d="M390 249H740" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<text x="430" y="227" font-size="16" fill="#1d4ed8">DNS / Kerberos / AD</text>
+<rect x="760" y="162" width="360" height="206" rx="12" fill="white" stroke="#94a3b8"/>
+<text x="784" y="199" font-size="23" font-weight="700">DC01</text>
+<text x="784" y="226" font-size="17">Debian Samba AD • 192.168.64.12</text>
+<text x="784" y="255" font-size="16">DNS, Kerberos, LDAP</text>
+<text x="784" y="284" font-size="15">/var/log/samba/log.samba</text>
+<rect x="780" y="307" width="320" height="39" rx="6" fill="#dbeafe"/>
+<text x="801" y="332" font-size="16" font-weight="700">Elastic Agent • samba.auth</text>
+<rect x="40" y="460" width="1120" height="220" rx="18" fill="#f0fdf4" stroke="#bbf7d0"/>
+<text x="64" y="491" font-size="15" fill="#475569">MAC / UTM BRIDGE 192.168.64.1 • DOCKER SERVICES</text>
+<rect x="70" y="523" width="250" height="119" rx="12" fill="white" stroke="#94a3b8"/>
+<text x="89" y="554" font-size="20" font-weight="700">Fleet Server</text>
+<text x="89" y="581" font-size="16">HTTPS :8220 • self-signed</text>
+<text x="89" y="611" font-size="14" fill="#475569">Enrollment / policy / check-ins</text>
+<rect x="475" y="523" width="280" height="119" rx="12" fill="white" stroke="#94a3b8"/>
+<text x="495" y="554" font-size="20" font-weight="700">Elasticsearch 9.2.0</text>
+<text x="495" y="581" font-size="16">HTTP :9200</text>
+<text x="495" y="611" font-size="14" fill="#475569">Stores authentication events</text>
+<rect x="835" y="523" width="285" height="119" rx="12" fill="white" stroke="#94a3b8"/>
+<text x="855" y="554" font-size="20" font-weight="700">Kibana 9.2.0</text>
+<text x="855" y="581" font-size="16">HTTP :5601 • Elastic Security</text>
+<text x="855" y="611" font-size="14" fill="#475569">Threshold rule → expected alert</text>
+<path d="M1035 368V421H680V523" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<rect x="783" y="405" width="221" height="26" fill="#f8fafc"/><text x="791" y="424" font-size="15" fill="#1d4ed8">Telemetry → Elasticsearch</text>
+<path d="M845 368V447H194V523" stroke="#047857" stroke-width="2.5" stroke-dasharray="8 5" fill="none" marker-end="url(#green)"/>
+<rect x="285" y="431" width="360" height="25" fill="#f8fafc"/><text x="298" y="449" font-size="15" fill="#047857">HTTPS management → Fleet Server</text>
+<path d="M320 583H475" stroke="#047857" stroke-width="2" stroke-dasharray="7 4" fill="none" marker-end="url(#green)"/>
+<text x="344" y="566" font-size="13" fill="#047857">Fleet state</text>
+<path d="M835 583H755" stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+<text x="773" y="567" font-size="12" fill="#1d4ed8">Query</text>
+<text x="48" y="717" font-size="17" font-weight="700">LAB - Multiple Failed Kerberos Logins</text>
+<text x="48" y="744" font-size="15" fill="#475569">NT_STATUS_WRONG_PASSWORD • threshold 3 • no grouping • every 1 minute + 1 minute look-back</text>
+<text x="48" y="768" font-size="12" fill="#64748b">Lab only: HTTP and self-signed TLS require isolation. Query matches Samba failures without enforcing Kerberos.</text>
+</g></svg>
